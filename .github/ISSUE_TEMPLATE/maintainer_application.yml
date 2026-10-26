@@ -1,0 +1,90 @@
+name: Maintainer application
+description: Apply to become an official Bluenixx maintainer for a device
+title: "[Application] <codename>"
+labels: ["maintainer-application"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read the README first. Your fork of `vendor_lineage` has to be ready **before** you submit this,
+        because the checks run against it right away.
+        If something fails, fix it and either edit this issue or comment `/recheck`.
+
+  - type: input
+    id: name
+    attributes:
+      label: Maintainer name
+      description: The exact name you put in `bluenixx.maintainers` and in `BLUENIXX_MAINTAINER`. No spaces, no colons.
+      placeholder: Zediss
+    validations:
+      required: true
+
+  - type: input
+    id: codename
+    attributes:
+      label: Device codename
+      description: Codename only, without the `bluenixx_` prefix.
+      placeholder: bangkk
+    validations:
+      required: true
+
+  - type: input
+    id: device_tree
+    attributes:
+      label: Device tree
+      description: GitHub or GitLab link. Add `/tree/<branch>` if you are not using the default branch. `bluenixx_<codename>.mk` has to be in the root of this repo.
+      placeholder: https://github.com/you/device_motorola_bangkk
+    validations:
+      required: true
+
+  - type: input
+    id: vendor_tree
+    attributes:
+      label: Vendor tree
+      placeholder: https://gitlab.com/you/vendor_motorola_bangkk
+    validations:
+      required: true
+
+  - type: input
+    id: kernel_tree
+    attributes:
+      label: Kernel tree
+      placeholder: https://github.com/you/kernel_motorola_sm6375
+    validations:
+      required: true
+
+  - type: input
+    id: fork
+    attributes:
+      label: Your vendor_lineage fork
+      description: Fork of https://github.com/Bluenixx/vendor_lineage with your entry already added. Add `/tree/<branch>` if the change is not on the default branch.
+      placeholder: https://github.com/you/vendor_lineage
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact
+      description: Telegram username or anything else we can reach you on.
+      placeholder: "@username"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Device status, known bugs, other ROMs you maintain, links to builds or screenshots.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before you submit
+      options:
+        - label: All trees are public and build on the current Bluenixx branch
+          required: true
+        - label: I will keep the device up to date and answer bug reports
+          required: true
