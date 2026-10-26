@@ -13,7 +13,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-UPSTREAM = "Bluenixx/vendor_lineage"
+UPSTREAM = os.environ.get("GITHUB_REPOSITORY", "Bluenixx/bluenixx_maintainers")
 MAINT_FILE = os.environ.get("MAINTAINERS_PATH", "bluenixx.maintainers")
 MARKER = "<!-- bluenixx-maintainer-check -->"
 
@@ -28,7 +28,7 @@ FIELDS = {
     "Device tree": "device_tree",
     "Vendor tree": "vendor_tree",
     "Kernel tree": "kernel_tree",
-    "Your vendor_lineage fork": "fork",
+    "Your bluenixx_maintainers fork": "fork",
 }
 
 
@@ -200,18 +200,18 @@ def run_checks(f, token):
             else:
                 add(True, f"{mk_name}: PRODUCT_NAME", f"`{prod}`")
 
-    # fork of vendor_lineage + maintainers entry
+    # fork of bluenixx_maintainers + maintainers entry
     fk = Repo(f.get("fork"), token)
     if not (fk.valid and fk.host == "github"):
-        add(False, "vendor_lineage fork", "Needs to be a GitHub link to your fork.")
+        add(False, "bluenixx_maintainers fork", "Needs to be a GitHub link to your fork.")
     elif not fk.load():
-        add(False, "vendor_lineage fork", "Could not reach it. Make sure the fork is public.")
+        add(False, "bluenixx_maintainers fork", "Could not reach it. Make sure the fork is public.")
     else:
         parent = (fk.meta.get("parent") or {}).get("full_name", "")
         if not fk.meta.get("fork") or parent.lower() != UPSTREAM.lower():
-            add(False, "vendor_lineage fork", f"This is not a fork of `{UPSTREAM}`.")
+            add(False, "bluenixx_maintainers fork", f"This is not a fork of `{UPSTREAM}`.")
         else:
-            add(True, "vendor_lineage fork", f"`{fk.path}` @ `{fk.ref}`")
+            add(True, "bluenixx_maintainers fork", f"`{fk.path}` @ `{fk.ref}`")
             txt = fk.file(MAINT_FILE)
             if txt is None:
                 add(False, MAINT_FILE, f"Not found in the root of your fork on `{fk.ref}`.")

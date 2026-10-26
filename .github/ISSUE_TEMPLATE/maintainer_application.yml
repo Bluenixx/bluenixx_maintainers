@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Read the README first. Your fork of `vendor_lineage` has to be ready **before** you submit this,
+        Read the README first. Your fork of `bluenixx_maintainers` has to be ready **before** you submit this,
         because the checks run against it right away.
         If something fails, fix it and either edit this issue or comment `/recheck`.
 
@@ -56,9 +56,9 @@ body:
   - type: input
     id: fork
     attributes:
-      label: Your vendor_lineage fork
-      description: Fork of https://github.com/Bluenixx/vendor_lineage with your entry already added. Add `/tree/<branch>` if the change is not on the default branch.
-      placeholder: https://github.com/you/vendor_lineage
+      label: Your bluenixx_maintainers fork
+      description: Fork of https://github.com/Bluenixx/bluenixx_maintainers with your entry already added. Add `/tree/<branch>` if the change is not on the default branch.
+      placeholder: https://github.com/you/bluenixx_maintainers
     validations:
       required: true
 

@@ -18,7 +18,7 @@ jobs:
             const issue = context.payload.issue;
             const approved = context.payload.label.name === 'approved';
             const body = approved
-              ? `@${issue.user.login} your application was approved. Someone from the team will get in touch about the next steps.`
+              ? `@${issue.user.login} your application was approved. Open a pull request from your fork to this repo with your `bluenixx.maintainers` line. Once it is merged your builds can be marked OFFICIAL.`
               : `@${issue.user.login} thanks for applying. We are not going forward with this one right now. A reviewer will leave a note here with the reason.`;
             await github.rest.issues.createComment({ ...context.repo, issue_number: issue.number, body });
             await github.rest.issues.update({
